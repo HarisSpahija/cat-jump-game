@@ -7,18 +7,48 @@ body {
     position: relative;
 }
 
-.player {
-    border: 1px solid blue;
-    height: 20px;
+.start-button {
     position: absolute;
-    z-index: 9999;
-    bottom: 15%;
-    left: 50%; /* Initial position in the middle of the page */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 7;
+    background-color: #fd1d1d;
+    color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Lava', cursive;
+    cursor: pointer;
+    box-shadow: 0 0 10px #fd1d1d;
+    animation: glow 1s ease-in-out infinite alternate;
 }
 
-.player-sprite {
-    width: 100%;
-    height: 100%;
+.player {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    z-index: 4;
+    bottom: 15%;
+    left: 50%; /* Initial position in the middle of the page */
+    border-radius: 50%;
+    background-color: #FFF;
+    box-shadow: 0 0 10px #FFF;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px #FFF;
+    }
+    50% {
+        box-shadow: 0 0 20px #FFF;
+    }
+    100% {
+        box-shadow: 0 0 10px #FFF;
+    }
 }
 
 .grid {
@@ -30,11 +60,39 @@ body {
     width: 50px;
     height: 50px;
     position: absolute;
-    z-index: 99;
+    z-index: 5;
     background-image: url("comet.png");
     background-size: cover;
     border-radius: 50%;
     animation: rotate 8s linear infinite, glow 6s ease-in-out infinite alternate;
+}
+
+.explode {
+    animation: explode 0.5s linear;
+}
+
+@keyframes explode {
+    0% {
+        background-image: url("Frame 1.png");
+    }
+    16% {
+        background-image: url("Frame 2.png");
+    }
+    33% {
+        background-image: url("Frame 3.png");
+    }
+    50% {
+        background-image: url("Frame 4.png");
+    }
+    66% {
+        background-image: url("Frame 5.png");
+    }
+    83% {
+        background-image: url("Frame 6.png");
+    }
+    100% {
+        background-image: none;
+    }
 }
 
 @keyframes glow {
@@ -73,9 +131,9 @@ body {
     position: absolute;
     left: 0;
     bottom: 0px;
-    height: 10%;
+    height: 4%;
     width: 100%;
-    z-index: 3;
+    z-index: 6;
 }
 
 .bg-animation {
@@ -83,18 +141,67 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 90%;
+    z-index: 3;
 }
 
-.big-mountains {
+.score {
     position: absolute;
-    z-index: 1;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    color: #fd1d1d;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Lava', cursive;
+}
+
+.score-vibrate {
+    animation: vibrate 0.3s linear both, spark-text 0.3s linear;
+}
+
+@keyframes vibrate {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    33% {
+        transform: translate(-5px, -3px);
+        
+    }
+    66% {
+        transform: translate(5px, 3px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes spark-text {
+    0% {
+        color: #fd1d1d;
+    }
+    50% {
+        color: #f5f5f5;
+    }
+    100% {
+        color: #fd1d1d;
+    }
+}
+
+.volcano {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
     opacity: 0.8;
     width: 100%;
     height: 100%;
 }
 
-.big-mountains img {
+.volcano img {
     width: 100%;
     height: 100%;
     object-fit: cover;
